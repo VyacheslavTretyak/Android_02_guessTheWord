@@ -2,6 +2,7 @@ package com.homework.android_02_guesstheword;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,7 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
+
     //--Class constants------------------------------ /** 
     // * Максимальное количество попыток отгадывания букв  */
     private final static int MAX_TRY_COUNT = 10;
@@ -29,15 +31,15 @@ public class MainActivity extends ActionBarActivity {
     /**
      * Слово, которое загадано
      */
-    private String word;
+    private static String word;
     /**
      * Текущее состояние отгадываемого слова
      */
-    private String curWord;
+    private static String curWord;
     /**
      * Счетчик попыток отгадывания букв.
      */
-    private int count; /* * Поля объекта, относящиеся к виджетам
+    private static int count; /* * Поля объекта, относящиеся к виджетам
      * -----------------------------------------------  */
     /**
      * Текстовое поле, содержащее количество   * оставшихся попыток
@@ -73,7 +75,12 @@ public class MainActivity extends ActionBarActivity {
             this.tvSymbols[i] = (TextView) this.findViewById(this.tvSymbolsId[i]);
         }
         //--Инициализация игры---------------------------
-        this.initGame();
+        if(MainActivity.word == null){
+            this.initGame();
+        }else{
+            this.showGame();
+        }
+
     }
 
     /**
